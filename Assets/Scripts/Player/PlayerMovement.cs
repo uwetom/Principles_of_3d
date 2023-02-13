@@ -39,7 +39,10 @@ public class PlayerMovement : MonoBehaviour
    }
 
    void MovementManagement (float vertical, bool sneaking){
-      if(vertical > 0){
+
+        anim.SetBool(hash.sneakingBool, sneaking);
+
+        if (vertical > 0){
          anim.SetFloat(hash.speedFloat, walkSpeed, speedDampTime, Time.deltaTime);
       }else{
          anim.SetFloat(hash.speedFloat, 0);
