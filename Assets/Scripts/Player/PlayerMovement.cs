@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
    public float speedDampTime = 0.01f;
    public float sensitivityX = 1.0f;
    public float walkSpeed = 1.5f;
+    public float pitchValue = 1.5f;
 
    private Animator anim;
    private HashIDs hash;
@@ -43,10 +44,30 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool(hash.sneakingBool, sneaking);
 
         if (vertical > 0){
-         anim.SetFloat(hash.speedFloat, walkSpeed, speedDampTime, Time.deltaTime);
-      }else{
-         anim.SetFloat(hash.speedFloat, 0);
-      }
+            anim.SetFloat(hash.speedFloat, walkSpeed, speedDampTime, Time.deltaTime);
+            anim.SetBool("Backwards", false);
+        }
+        
+        if(vertical < 0)
+        {
+            anim.SetFloat(hash.speedFloat, -1.5f, speedDampTime, Time.deltaTime);
+            anim.SetBool("Backwards", true);
+
+            Rigidbody ourBody = this.GetComponent<Rigidbody>();
+            Vector3 moveBack = new Vector3(0.0f, 0.0f, -0.7f);
+            ourBody.velocity = moveBack;
+        }
+
+        if(vertical == 0)
+        {
+            anim.SetFloat(hash.speedFloat, 0.01f);
+            anim.SetBool(hash.backwardsBool, false);
+        }
+        
+      
+
+
+
    }
 
    void Rotating(float mouseXInput){
@@ -64,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
       }
    }
 
-
    void AudioManagement (bool shout){
       if(anim.GetCurrentAnimatorStateInfo (0). IsName("Walk")){
          // and if the footsteps are not already playing
@@ -81,6 +101,13 @@ public class PlayerMovement : MonoBehaviour
       if(shout){
          //3D sound so play the shouting clip where we are.
          AudioSource.PlayClipAtPoint(shoutingClip, transform.position);
+
+            GameObject thisAudio = GameObject.Find("One shot audio");
+
+            if(thisAudio.name == "z2 - V2 - Angry - Free - 1")
+            {
+                thisAudio.GetComponent<AudioSource>().pitch = pitchValue;
+            }
       }
    }
 }

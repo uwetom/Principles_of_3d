@@ -519,10 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f697d0ca8cf094493731899a13b103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoutingClip: {fileID: 8300000, guid: f2e0ffd43812bf642a502c434b572c75, type: 3}
+  shoutingClip: {fileID: 8300000, guid: 1fb023a333ca93a40a9c968a37e6f739, type: 3}
   speedDampTime: 0.01
   sensitivityX: 1
   walkSpeed: 1.5
+  pitchValue: 1.5
 --- !u!82 &283239439
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1340,6 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 283239437}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!1001 &755856470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1886,6 +1888,7 @@ MonoBehaviour:
   speedDampTime: 0.01
   sensitivityX: 1
   walkSpeed: 1.5
+  pitchValue: 1.5
 --- !u!1001 &1084440470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3291,6 +3294,7 @@ MonoBehaviour:
   speedFloat: 0
   sneakingBool: 0
   shoutingBool: 0
+  backwardsBool: 0
 --- !u!4 &1965454173
 Transform:
   m_ObjectHideFlags: 0
