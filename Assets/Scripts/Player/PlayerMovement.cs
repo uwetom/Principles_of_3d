@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
    public float speedDampTime = 0.01f;
    public float sensitivityX = 1.0f;
    public float walkSpeed = 1.5f;
-    public float pitchValue = 1.5f;
+   public float pitchValue = 1.5f;
 
    private Animator anim;
    private HashIDs hash;
+   private float elapsedTime = 0;
+   private bool noBackMov = true;
 
 
    private void Awake(){
@@ -28,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     Rotating(turn);
     MovementManagement(v, sneak);
+
+        elapsedTime += Time.deltaTime;
+      //  Debug.Log("elapsed time is : " + elapsedTime);
    }
 
    void Update(){
@@ -46,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (vertical > 0){
             anim.SetFloat(hash.speedFloat, walkSpeed, speedDampTime, Time.deltaTime);
             anim.SetBool("Backwards", false);
+            noBackMov = true;
         }
         
         if(vertical < 0)
@@ -54,14 +60,24 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Backwards", true);
 
             Rigidbody ourBody = this.GetComponent<Rigidbody>();
-            Vector3 moveBack = new Vector3(0.0f, 0.0f, -0.7f);
-            ourBody.velocity = moveBack;
+
+            float movement = Mathf.Lerp(0f, -0.025f, 0.7f);
+            Vector3 moveBack = new Vector3(0.0f, 0.0f, movement);
+            moveBack = ourBody.transform.TransformDirection(moveBack);
+            ourBody.transform.position += moveBack;
+
+            if(noBackMov == true)
+            {
+                elapsedTime = 0;
+                noBackMov = false;
+            }
         }
 
         if(vertical == 0)
         {
             anim.SetFloat(hash.speedFloat, 0.01f);
             anim.SetBool(hash.backwardsBool, false);
+            noBackMov = true;
         }
         
       
