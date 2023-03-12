@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 206311187}
   - component: {fileID: 206311189}
   - component: {fileID: 206311188}
+  - component: {fileID: 206311190}
   m_Layer: 0
   m_Name: PictureInPicture
   m_TagString: Untagged
@@ -400,7 +401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206311186}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 9.36, z: 0}
+  m_LocalPosition: {x: 0, y: 5.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -470,6 +471,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &206311190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206311186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c700e5478ab2408feb4bc5ac034a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 615737336}
+  zoomCamera: {fileID: 206311189}
 --- !u!1 &262723003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c62365b13e9e0b4ea6b72941781f8fc, type: 3}
